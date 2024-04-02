@@ -9,7 +9,7 @@ from torch.utils.data import TensorDataset, DataLoader, RandomSampler, Sequentia
 SOS_token = 0
 EOS_token = 1
 #TODO: add a padding token later and compare
-MAX_LENGTH = 6
+MAX_LENGTH = 10
 
 eng_prefixes = (
     "i am ", "i m ",
@@ -76,6 +76,7 @@ def readLangs(lang1, lang2, reverse=False):
     return input_lang, output_lang, pairs
 
 def filterPair(p):
+    # return len(p[0].split(' ')) < MAX_LENGTH and len(p[1].split(' ')) < MAX_LENGTH
     return len(p[0].split(' ')) < MAX_LENGTH and len(p[1].split(' ')) < MAX_LENGTH and p[1].startswith(eng_prefixes)
 
 def filterPairs(pairs):
